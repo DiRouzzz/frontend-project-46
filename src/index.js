@@ -43,7 +43,7 @@ function genDiff(filepath1, filepath2) {
 		}
 	}
 
-	return result;
+	return `{\n${result}\n}`;
 }
 
 export default genDiff;
