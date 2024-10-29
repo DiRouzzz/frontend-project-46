@@ -1,20 +1,10 @@
 #!/usr/bin/env node
-/* eslint-disable no-tabs */
-import path from 'node:path';
 import _ from 'lodash';
-import jsonParse from './parsers/jsonParse.js';
-import yamlParse from './parsers/parseYaml.js';
+import parseFile from './parsers/parseFile.js';
 
 function genDiff(filepath1, filepath2) {
-  let file1;
-  let file2;
-  if ((path.extname(filepath1) && path.extname(filepath2)) === '.json') {
-    file1 = jsonParse(filepath1);
-    file2 = jsonParse(filepath2);
-  } else if ((path.extname(filepath1) && path.extname(filepath2)) === '.yaml') {
-    file1 = yamlParse(filepath1);
-    file2 = yamlParse(filepath2);
-  }
+  const file1 = parseFile(filepath1);
+  const file2 = parseFile(filepath2);
 
   const f1 = Object.entries(file1);
   const f2 = Object.entries(file2);
@@ -29,13 +19,10 @@ function genDiff(filepath1, filepath2) {
     } else if (!Object.hasOwn(file2, key)) {
       result += `  - ${key}: ${value}\n`;
     } else if (
-      Object.hasOwn(file1, key) === Object.hasOwn(file2, key)
-			// eslint-disable-next-line no-tabs
-			&& file1[key] !== file2[key]
+      Object.hasOwn(file1, key) === Object.hasOwn(file2, key) && file1[key] !== file2[key]
     ) {
       if (
-        !result.includes(`  - ${key}: ${file1[key]}\n`)
-				&& !result.includes(`  + ${key}: ${file2[key]}\n`)
+        !result.includes(`  - ${key}: ${file1[key]}\n`) && !result.includes(`  + ${key}: ${file2[key]}\n`)
       ) {
         result += `  - ${key}: ${file1[key]}\n`;
         result += `  + ${key}: ${file2[key]}\n`;
