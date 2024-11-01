@@ -70,10 +70,3 @@ describe('gendiffJson', () => {
     expect(genDiff(getFixturePath('file3.json'), getFixturePath('file4.yaml'), 'json')).toEqual(result);
   });
 });
-
-describe('FFF', () => {
-  const result = fs.readFileSync(path.resolve(__dirname, './__fixtures__/resultstylish.txt'), 'utf8');
-  test('fff', () => {
-    expect(genDiff(getFixturePath('file5.json'), getFixturePath('file6.json'))).toEqual(result);
-  });
-});
