@@ -4,6 +4,9 @@ const checkValue = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
+  if (value === '') {
+    return "''";
+  }
   if (Number.isNaN(Number(value))) {
     return `'${value}'`;
   }
@@ -19,13 +22,11 @@ const plain = (tree) => {
 
         switch (n.type) {
           case 'changed':
-            return `Property '${newProperty}' was changed from ${checkValue(
-              n.oldValue,
-            )} to ${checkValue(n.newValue)}`;
+            console.log(checkValue(n.oldValue));
+
+            return `Property '${newProperty}' was updated. From ${checkValue(n.oldValue)} to ${checkValue(n.newValue)}`;
           case 'added':
-            return `Property '${newProperty}' was added with value: ${checkValue(
-              n.value,
-            )}`;
+            return `Property '${newProperty}' was added with value: ${checkValue(n.value)}`;
           case 'removed':
             return `Property '${newProperty}' was removed`;
           case 'nested':
