@@ -4,3 +4,4 @@
 [![Actions Status](https://github.com/DiRouzzz/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/DiRouzzz/frontend-project-46/actions)
 [![asciicast](https://asciinema.org/a/gVevahWLlL0ioAzbDzvDgNLxx.svg)](https://asciinema.org/a/gVevahWLlL0ioAzbDzvDgNLxx)
 [![asciicast](https://asciinema.org/a/xGabviPTi82fdEjt4lAc6Z7Ls.svg)](https://asciinema.org/a/xGabviPTi82fdEjt4lAc6Z7Ls)
+[![asciicast](https://asciinema.org/a/SxshhrRBg53ZiuTVA7hERiW3d.svg)](https://asciinema.org/a/SxshhrRBg53ZiuTVA7hERiW3d)
