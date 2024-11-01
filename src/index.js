@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import _ from 'lodash';
 import parseFile from './parsers/parseFile.js';
-import render from './formatters/render.js';
+import render from './formatters/index.js';
 
 function genDiffBuild(obj1, obj2) {
   const keys1 = Object.keys(obj1);

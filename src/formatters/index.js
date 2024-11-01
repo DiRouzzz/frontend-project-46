@@ -1,4 +1,5 @@
 import stylish from './stylish.js';
+import plain from './plain.js';
 
 function render(tree, format) {
   switch (format) {
