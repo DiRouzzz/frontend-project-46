@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import _ from 'lodash';
+import parseFile from './parsers/parseFile.js';
+import render from './formatters/render.js';
 
-function genDiff(obj1, obj2) {
+function genDiffBuild(obj1, obj2) {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
 
@@ -22,7 +24,7 @@ function genDiff(obj1, obj2) {
 
     if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
       return {
-        name: key, type: 'nested', children: genDiff(obj1[key], obj2[key]),
+        name: key, type: 'nested', children: genDiffBuild(obj1[key], obj2[key]),
       };
     }
 
@@ -36,6 +38,16 @@ function genDiff(obj1, obj2) {
       name: key, type: 'unchanged', value: obj1[key],
     };
   });
+
+  return result;
+}
+
+function genDiff(filepath1, filepath2, format) {
+  const parseFile1 = parseFile(filepath1);
+  const parseFile2 = parseFile(filepath2);
+
+  const diff = genDiffBuild(parseFile1, parseFile2);
+  const result = render(diff, format);
 
   return result;
 }
