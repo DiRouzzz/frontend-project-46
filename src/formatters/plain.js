@@ -22,8 +22,6 @@ const plain = (tree) => {
 
         switch (n.type) {
           case 'changed':
-            console.log(checkValue(n.oldValue));
-
             return `Property '${newProperty}' was updated. From ${checkValue(n.oldValue)} to ${checkValue(n.newValue)}`;
           case 'added':
             return `Property '${newProperty}' was added with value: ${checkValue(n.value)}`;
