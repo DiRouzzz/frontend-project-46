@@ -18,22 +18,23 @@ const getValue = (value, depth) => {
 export default (data) => {
   const iter = (innerData, depth = 0) => {
     const formattedData = innerData.flatMap((node) => {
+      const lineSign = (sign, value = node.value) => `${indent(depth)}${sign}${node.name}: ${getValue(value, depth)}`;
       if (node.type === 'added') {
-        return `${indent(depth)}${plus}${node.name}: ${getValue(node.value, depth)}`;
+        return lineSign(plus);
       }
 
       if (node.type === 'removed') {
-        return `${indent(depth)}${minus}${node.name}: ${getValue(node.value, depth)}`;
+        return lineSign(minus);
       }
 
       if (node.type === 'unchanged') {
-        return `${indent(depth)}${nevtral}${node.name}: ${getValue(node.value, depth)}`;
+        return lineSign(nevtral);
       }
 
       if (node.type === 'changed') {
         return [
-          `${indent(depth)}${minus}${node.name}: ${getValue(node.oldValue, depth)}`,
-          `${indent(depth)}${plus}${node.name}: ${getValue(node.newValue, depth)}`,
+          lineSign(minus, node.oldValue),
+          lineSign(plus, node.newValue),
         ];
       }
 
