@@ -4,16 +4,12 @@ import { cwd } from 'node:process';
 import path from 'node:path';
 
 export default (filepath) => {
-  let file;
+  const pathFile = fs.readFileSync(path.resolve(filepath || `${cwd()}/${filepath}`), { encoding: 'utf-8' });
   if (path.extname(filepath) === '.json') {
-    file = JSON.parse;
+    return JSON.parse(pathFile);
   }
   if (path.extname(filepath) === '.yaml' || path.extname(filepath) === '.yml') {
-    file = yaml.load;
+    return yaml.load(pathFile);
   }
-  return file(
-    fs.readFileSync(path.resolve(filepath || `${cwd()}/${filepath}`), {
-      encoding: 'utf-8',
-    }),
-  );
+  return '';
 };
