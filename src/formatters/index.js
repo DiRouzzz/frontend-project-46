@@ -1,7 +1,7 @@
 import stylish from './stylish.js';
 import plain from './plain.js';
 
-function render(tree, format) {
+const render = (tree, format) => {
   switch (format) {
     case 'plain':
       return plain(tree);
@@ -10,6 +10,6 @@ function render(tree, format) {
     default:
       return stylish(tree);
   }
-}
+};
 
 export default render;

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import parseFile from './parsers/parseFile.js';
 import render from './formatters/index.js';
 
-function genDiffBuild(obj1, obj2) {
+const genDiffBuild = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
 
@@ -30,9 +30,9 @@ function genDiffBuild(obj1, obj2) {
   });
 
   return result;
-}
+};
 
-function genDiff(filepath1, filepath2, format) {
+const genDiff = (filepath1, filepath2, format) => {
   const parseFile1 = parseFile(filepath1);
   const parseFile2 = parseFile(filepath2);
 
@@ -40,6 +40,6 @@ function genDiff(filepath1, filepath2, format) {
   const result = render(diff, format);
 
   return result;
-}
+};
 
 export default genDiff;
